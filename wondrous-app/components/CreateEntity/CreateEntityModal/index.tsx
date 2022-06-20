@@ -135,6 +135,7 @@ import {
 import { GithubButton } from 'components/Settings/Github/styles';
 import { ConvertTaskToBountyModal } from './ConfirmTurnTaskToBounty';
 import { ErrorText } from 'components/Common';
+import { transformMediaFormat } from 'utils/helpers';
 
 const formValidationSchema = Yup.object().shape({
   orgId: Yup.string().required('Organization is required').typeError('Organization is required'),
@@ -871,19 +872,6 @@ const useContextValue = (condition, callback) => {
       callback();
     }
   }, [condition, callback]);
-};
-
-export const transformMediaFormat = (media) => {
-  return (
-    media &&
-    media.map((item) => {
-      return {
-        uploadSlug: item?.slug,
-        type: item?.type,
-        name: item?.name,
-      };
-    })
-  );
 };
 
 const initialValues = (entityType, existingTask = undefined) => {
